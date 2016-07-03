@@ -48,11 +48,10 @@ skynet.register_protocol {
 	name = "client",
 	id = skynet.PTYPE_CLIENT,
 	unpack = function (msg, sz)
-		return skynet.tostring(msg, sz)
+		return "aType" , skynet.tostring(msg, sz)
 	end,
 	dispatch = function (_, _, type, ...)
-		print("type:" .. type)
-		if type == "REQUEST" then
+		--[[if type == "REQUEST" then
 			local ok, result  = pcall(request, ...)
 			if ok then
 				if result then
@@ -64,7 +63,8 @@ skynet.register_protocol {
 		else
 			assert(type == "RESPONSE")
 			error "This example doesn't support request client"
-		end
+		end]]
+		print(type .. arg[1])
 	end
 }
 
