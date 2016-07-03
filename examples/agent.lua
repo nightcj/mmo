@@ -48,9 +48,10 @@ skynet.register_protocol {
 	name = "client",
 	id = skynet.PTYPE_CLIENT,
 	unpack = function (msg, sz)
-		return host:dispatch(msg, sz)
+		return skynet.tostring(msg,sz)
 	end,
 	dispatch = function (_, _, type, ...)
+		print("type:" .. type)
 		if type == "REQUEST" then
 			local ok, result  = pcall(request, ...)
 			if ok then
